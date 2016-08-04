@@ -12,6 +12,8 @@ Using the web framework of your choice (bearing in mind that Rails is what we kn
 * Parses and stores the information in the salesdata.csv file
 * Calculates and displays the total sales revenue to the user
 
+Bonus points if you add authentication.
+
 _Ideally you shouldn't spend more than 4-5 hours on your solution, but take as much time as you want._
 
 ## Delivery requirements
@@ -23,8 +25,6 @@ Think about things like:
 * Testing
 * How to store the data
 * How would your solution differ if it had to scale?
-
-Bonus points if you add authentication.
 
 Please submit your solution as a pull request, or package it up and send it to doug@qedinvestors.com.
 
