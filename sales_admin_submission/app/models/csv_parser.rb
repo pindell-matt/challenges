@@ -13,22 +13,22 @@ class CsvParser
   end
 
   def customer_parser(data)
-    Customer.create(name: data[:customer_name])
+    Customer.where(name: data[:customer_name]).first_or_create
   end
 
   def merchant_parser(data)
-    Merchant.create(
+    Merchant.where(
       name:    data[:merchant_name],
       address: data[:merchant_address]
-    )
+    ).first_or_create
   end
 
   def item_parser(data, merchant_id)
-    Item.create(
+    Item.where(
       description: data[:item_description],
       price:       data[:item_price],
       merchant_id: merchant_id
-    )
+    ).first_or_create
   end
 
 end
