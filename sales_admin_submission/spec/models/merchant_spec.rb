@@ -7,6 +7,7 @@ describe Merchant do
   end
 
   context 'associations' do
+    it { should have_many(:items) }
     it { should have_many(:orders) }
   end
 end

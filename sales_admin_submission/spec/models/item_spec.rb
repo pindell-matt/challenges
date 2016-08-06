@@ -6,4 +6,8 @@ describe Item do
     it { should validate_presence_of :price }
     it { should validate_presence_of :merchant_id }
   end
+
+  context 'associations' do
+    it { should belong_to(:merchant) }
+  end
 end
