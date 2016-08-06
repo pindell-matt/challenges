@@ -8,4 +8,8 @@ describe Order do
     it { should validate_presence_of :quantity }
     it { should validate_presence_of :total_price }
   end
+
+  context 'associations' do
+    it { should belong_to(:customer) }
+  end
 end
