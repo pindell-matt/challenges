@@ -5,9 +5,7 @@ class DataController < ApplicationController
 
   def create
     filepath = csv_params.path
-    CSV.foreach(filepath, headers: true, header_converters: :symbol) do |row|
-      OpenStruct.new(row.to_h)
-    end
+    csv_parser(filepath)
     redirect_to root_path
   end
 
@@ -15,5 +13,9 @@ class DataController < ApplicationController
 
     def csv_params
       params.require('file')
+    end
+
+    def csv_parser(filepath)
+      CsvParser.new(filepath)
     end
 end
