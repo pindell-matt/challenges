@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  resources :data, only: [:index]
+  root to: 'data#index'
+  resources :data, only: [:index, :create]
 end
