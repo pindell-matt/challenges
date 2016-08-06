@@ -11,5 +11,6 @@ describe Order do
 
   context 'associations' do
     it { should belong_to(:customer) }
+    it { should belong_to(:merchant) }
   end
 end
