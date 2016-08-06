@@ -11,14 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806221627) do
+ActiveRecord::Schema.define(version: 20160806224007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.string  "description"
+    t.float   "price"
+    t.integer "merchant_id"
+  end
+
+  add_index "items", ["merchant_id"], name: "index_items_on_merchant_id", using: :btree
 
   create_table "merchants", force: :cascade do |t|
     t.string "name"
     t.string "address"
   end
 
+  add_foreign_key "items", "merchants"
 end
