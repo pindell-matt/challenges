@@ -1,5 +1,4 @@
 class CsvParser
-
   def initialize(csv)
     parse_by_row(csv)
   end
@@ -44,9 +43,9 @@ class CsvParser
 
   def order_item_parser(item_id, order_id, quantity, unit_price)
     OrderItem.where(
-      item_id: item_id,
-      order_id: order_id,
-      quantity: quantity,
+      item_id:    item_id,
+      order_id:   order_id,
+      quantity:   quantity,
       unit_price: unit_price
     ).first_or_create
   end

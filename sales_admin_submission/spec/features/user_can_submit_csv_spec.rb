@@ -16,5 +16,7 @@ feature "User can submit csv" do
     expect(Customer.count).to eq(4)
     expect(Merchant.count).to eq(4)
     expect(Item.count).to eq(4)
+    expect(Order.count).to eq(5)
+    expect(OrderItem.count).to eq(5)
   end
 end
