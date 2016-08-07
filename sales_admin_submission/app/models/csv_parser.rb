@@ -6,10 +6,16 @@ class CsvParser
 
   def parse_by_row(csv)
     CSV.foreach(csv, headers: true, header_converters: :symbol) do |row|
-      customer = customer_parser(row)
-      merchant = merchant_parser(row)
-      item     = item_parser(row, merchant.id)
-      order    = order_parser(customer.id, merchant.id)
+      customer   = customer_parser(row)
+      merchant   = merchant_parser(row)
+      item       = item_parser(row, merchant.id)
+      order      = order_parser(customer.id, merchant.id)
+      order_item = order_item_parser(
+        item.id,
+        order.id,
+        row[:quantity],
+        item.price
+      )
     end
   end
 
@@ -36,6 +42,15 @@ class CsvParser
     Order.where(
       customer_id: customer_id,
       merchant_id: merchant_id,
+    ).first_or_create
+  end
+
+  def order_item_parser(item_id, order_id, quantity, unit_price)
+    OrderItem.where(
+      item_id: item_id,
+      order_id: order_id,
+      quantity: quantity,
+      unit_price: unit_price
     ).first_or_create
   end
 end

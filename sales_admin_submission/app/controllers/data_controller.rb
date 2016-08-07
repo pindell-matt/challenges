@@ -1,6 +1,7 @@
 class DataController < ApplicationController
 
   def index
+    @merchants = Merchant.all
   end
 
   def create
