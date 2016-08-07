@@ -9,7 +9,7 @@ class CsvParser
       customer = customer_parser(row)
       merchant = merchant_parser(row)
       item     = item_parser(row, merchant.id)
-      order    = order_parser(customer.id, merchant.id, item.id, row[:quantity])
+      order    = order_parser(customer.id, merchant.id)
     end
   end
 
@@ -32,12 +32,10 @@ class CsvParser
     ).first_or_create
   end
 
-  def order_parser(customer_id, merchant_id, item_id, quantity)
+  def order_parser(customer_id, merchant_id)
     Order.where(
       customer_id: customer_id,
       merchant_id: merchant_id,
-      item_id:     item_id,
-      quantity:    quantity
     ).first_or_create
   end
 end
