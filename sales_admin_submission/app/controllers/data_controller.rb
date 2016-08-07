@@ -6,15 +6,18 @@ class DataController < ApplicationController
   end
 
   def create
-    filepath = csv_params.path
-    csv_parser(filepath)
+    unless csv_params.empty?
+      csv_parser(csv_params[:file].path)
+    else
+      flash[:notice] = "Please submit a file!"
+    end
     redirect_to root_path
   end
 
   private
 
     def csv_params
-      params.require('file')
+      params.permit('file')
     end
 
     def csv_parser(filepath)
