@@ -22,7 +22,7 @@ describe CsvParser do
   end
 
   it 'can create customers' do
-    customer_data = { customer_name: "Jane Doe" }
+    customer_data = { customer_name: "Fake Customer" }
 
     csv_parser = CsvParser.new
 
@@ -32,5 +32,38 @@ describe CsvParser do
 
     expect(Customer.count).to eq(1)
     expect(Customer.first.name).to eq(customer_data[:customer_name])
+  end
+
+  it 'will not create duplicate customers' do
+    customer_data = { customer_name: "Fake Customer" }
+
+    csv_parser = CsvParser.new
+
+    expect(Customer.count).to eq(0)
+
+    csv_parser.customer_parser(customer_data)
+
+    expect(Customer.count).to eq(1)
+
+    csv_parser.customer_parser(customer_data)
+
+    expect(Customer.count).to eq(1)
+  end
+
+  it 'can create merchants' do
+    merchant_data = {
+      merchant_name:    "Fake Company",
+      merchant_address: "1234 Fake St."
+    }
+
+    csv_parser = CsvParser.new
+
+    expect(Merchant.count).to eq(0)
+
+    csv_parser.merchant_parser(merchant_data)
+
+    expect(Merchant.count).to eq(1)
+    expect(Merchant.first.name).to eq(merchant_data[:merchant_name])
+    expect(Merchant.first.address).to eq(merchant_data[:merchant_address])
   end
 end
