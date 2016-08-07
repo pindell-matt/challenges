@@ -22,11 +22,11 @@ feature "User can submit csv" do
     expect(OrderItem.count).to eq(5)
 
     within('.results') do
-      expect(page).to have_text('Total Revenue for all Merchants: 526.45')
-      expect(page).to have_text('Carpenter Outfitters: 149.99')
-      expect(page).to have_text('Hero Outlet: 47.5')
-      expect(page).to have_text('Stockholm Supplies: 199.96')
-      expect(page).to have_text('Parker Footwear: 129.0')
+      expect(page).to have_text('Total Revenue for all Merchants: $526.45')
+      expect(page).to have_text('Carpenter Outfitters: $149.99')
+      expect(page).to have_text('Hero Outlet: $47.5')
+      expect(page).to have_text('Stockholm Supplies: $199.96')
+      expect(page).to have_text('Parker Footwear: $129.0')
     end
   end
 end

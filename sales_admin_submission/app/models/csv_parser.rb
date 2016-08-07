@@ -1,17 +1,15 @@
 class CsvParser
-  def initialize(csv)
-    parse_by_row(csv)
+  def initialize(csv = nil)
+    parse_by_row(csv) unless csv.nil?
   end
 
   def parse_by_row(csv)
     CSV.foreach(csv, headers: true, header_converters: :symbol) do |row|
-      customer   = customer_parser(row)
-      merchant   = merchant_parser(row)
-      item       = item_parser(row, merchant.id)
-      order      = order_parser(customer.id, merchant.id)
-      order_item = order_item_parser(
-        item.id, order.id, row[:quantity], item.price
-      )
+      customer = customer_parser(row)
+      merchant = merchant_parser(row)
+      item     = item_parser(row, merchant.id)
+      order    = order_parser(customer.id, merchant.id)
+      order_item_parser(item.id, order.id, row[:quantity], item.price)
     end
   end
 
