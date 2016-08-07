@@ -2,6 +2,7 @@ class DataController < ApplicationController
 
   def index
     @merchants = Merchant.all
+    @total = Merchant.total_sales_revenue
   end
 
   def create
