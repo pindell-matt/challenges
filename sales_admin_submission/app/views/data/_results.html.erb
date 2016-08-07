@@ -1,0 +1,10 @@
+<div class='results'>
+  <h3 class='total'>
+    Total Revenue for all Merchants: <%= Merchant.total_sales_revenue %>
+  </h3>
+  <ul>
+    <% @merchants.each do |merchant| %>
+      <li><%= merchant.name %>: <%= merchant.total_revenue %></li>
+    <% end %>
+  </ul>
+</div>

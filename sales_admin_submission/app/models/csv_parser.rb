@@ -11,10 +11,7 @@ class CsvParser
       item       = item_parser(row, merchant.id)
       order      = order_parser(customer.id, merchant.id)
       order_item = order_item_parser(
-        item.id,
-        order.id,
-        row[:quantity],
-        item.price
+        item.id, order.id, row[:quantity], item.price
       )
     end
   end

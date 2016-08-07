@@ -1,5 +1,7 @@
 <h1>Dashboard</h1>
 
 <% if @merchants.empty? %>
-  <%= render partial: "csv_form" %>
+  <%= render partial: 'csv_form' %>
+<% else %>
+  <%= render partial: 'results' %>
 <% end %>
