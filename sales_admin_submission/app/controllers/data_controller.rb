@@ -6,10 +6,10 @@ class DataController < ApplicationController
   end
 
   def create
-    unless csv_params.empty?
+    unless csv_params.empty? || !csv_params[:file].path.include?('.csv')
       csv_parser(csv_params[:file].path)
     else
-      flash[:notice] = "Please submit a file!"
+      flash[:notice] = "Please submit a CSV file!"
     end
     redirect_to root_path
   end

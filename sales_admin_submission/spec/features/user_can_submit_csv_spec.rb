@@ -43,7 +43,28 @@ feature "User can submit csv" do
       click_button 'Import CSV'
     end
 
-    expect(page).to have_text("Please submit a file!")
+    expect(page).to have_text("Please submit a CSV file!")
+
+    expect(Customer.count).to eq(0)
+    expect(Merchant.count).to eq(0)
+    expect(Item.count).to eq(0)
+    expect(Order.count).to eq(0)
+    expect(OrderItem.count).to eq(0)
+
+    expect(page).to_not have_text('Total Revenue for all Merchants: $526.45')
+  end
+
+  scenario "without a csv file" do
+    visit root_path
+
+    invalid_file = Rails.root.join('.gitignore')
+
+    within('.csv-form') do
+      attach_file :file, invalid_file
+      click_button 'Import CSV'
+    end
+
+    expect(page).to have_text("Please submit a CSV file!")
 
     expect(Customer.count).to eq(0)
     expect(Merchant.count).to eq(0)
