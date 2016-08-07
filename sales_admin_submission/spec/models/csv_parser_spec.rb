@@ -85,4 +85,19 @@ describe CsvParser do
     expect(Item.first.price).to eq(item_data[:item_price])
     expect(Item.first.merchant).to eq(merchant)
   end
+
+  it 'can create orders' do
+    customer = Customer.create(name: "Fake Customer")
+    merchant = Merchant.create(name: "Fake Company", address: "1234 Fake St.")
+
+    csv_parser = CsvParser.new
+
+    expect(Order.count).to eq(0)
+
+    csv_parser.order_parser(customer.id, merchant.id)
+
+    expect(Order.count).to eq(1)
+    expect(Order.first.customer).to eq(customer)
+    expect(Order.first.merchant).to eq(merchant)
+  end
 end
