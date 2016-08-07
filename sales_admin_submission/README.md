@@ -1,4 +1,4 @@
-== README
+# README
 
 To run this application, make sure postgresql is running, and execute the following commands:
 
@@ -18,5 +18,3 @@ Tests for this application can be run with:
 ```bash
   rspec
 ```
-
-<tt>rake doc:app</tt>.
